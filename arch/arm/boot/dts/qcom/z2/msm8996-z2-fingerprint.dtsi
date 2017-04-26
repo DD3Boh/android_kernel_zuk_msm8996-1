@@ -1,0 +1,126 @@
+/* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	tlmm: pinctrl@01010000 {
+		/*add for fpc1020*/
+		fpc_mux {
+			fpc_default: default {
+				mux {
+					pins = "gpio90", "gpio91";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio90", "gpio91";
+					drive-strength = <2>;
+					bias-disable;
+				};
+            };
+        };
+	};
+	
+	i2c@75b6000 {
+		goodix@5d {
+						compatible = "goodix,gt9xx";
+						reg = <0x5d>;
+						interrupt-parent = <&tlmm>;
+						interrupts = <125 0x2008>;
+						vdd_ana-supply = <&pm8994_l14>;
+						vcc_i2c-supply = <&pm8994_l22>;
+						/* pins used by touchscreen */
+						pinctrl-names = "ts_active","ts_suspend";
+						pinctrl-0 = <&ts_active>;
+						pinctrl-1 = <&ts_suspend>;
+						goodix,rst-gpio = <&tlmm 9 0x0>;
+						goodix,irq-gpio = <&tlmm 125 0x2008>;
+						//goodix,ldo-en-gpio = <&msmgpio 15 0x00>;
+						goodix,panel-coords = <0 0 720 1280>;
+						goodix,display-coords = <0 0 720 1280>;
+						goodix,button-map= <158 172 139>;
+						goodix,family-id = <0x0>;
+						goodix,cfg-group0 = [
+			45 38 04 80 07 0A 35 30 01 CA 2A 08 5A 32 03 04 00 00 00 00 12 11 00 15
+			18 1D 14 8B 2B 0D 4B 4D D3 07 D3 07 00 41 33 11 00 00 00 00 00 00 00 0A
+			08 00 41 2D 64 94 80 02 00 00 00 04 A7 30 00 91 39 00 82 43 00 75 4E 00
+			6A 5C 00 6A 00 00 00 00 00 00 00 00 00 00 05 01 00 00 00 00 00 00 00 02
+			00 00 00 00 00 00 00 00 00 08 3C 00 00 00 00 1E 02 04 06 08 0A 0C 0E 10
+			12 14 16 18 1A FF 00 10 0E 00 00 28 00 00 00 00 00 18 0C 00 00 00 00 02
+			04 06 08 0A 0C 0F 10 12 13 26 24 22 21 20 1F 1E 1D 1C 18 16 FF FF FF FF
+			00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 49 01];
+		};
+		
+		focaltech@38 {
+						compatible = "focaltech,fts";
+						reg = <0x38>;
+						interrupt-parent = <&tlmm>;
+						interrupts = <125 0x2008>;
+						vdd-supply = <&pm8994_l22>;
+						vcc_i2c-supply = <&pm8994_l18>;
+						/* pins used by touchscreen */
+						pinctrl-names = "ts_active","ts_suspend";
+						pinctrl-0 = <&ts_active>;
+						pinctrl-1 = <&ts_suspend>;
+						focaltech,name = "ft5436";
+						focaltech,family-id = <0x06>;
+						focaltech,reset-gpio = <&tlmm 9 0x0>;
+						focaltech,irq-gpio = <&tlmm 125 0x2008>;
+						focaltech,display-coords = <0 0 1080 1920>;
+						focaltech,panel-coords = <0 0 1080 1920>;
+						focaltech,button-map= <139 102 158>;
+						focaltech,no-force-update;
+						focaltech,i2c-pull-up;
+						focaltech,group-id = <1>;
+						focaltech,hard-reset-delay-ms = <20>;
+						focaltech,soft-reset-delay-ms = <200>;
+						focaltech,num-max-touches = <5>;
+						focaltech,fw-delay-aa-ms = <30>;
+						focaltech,fw-delay-55-ms = <30>;
+						focaltech,fw-upgrade-id1 = <0x79>;
+						focaltech,fw-upgrade-id2 = <0x08>;
+						focaltech,fw-delay-readid-ms = <10>;
+						focaltech,fw-delay-era-flsh-ms = <2000>;
+						focaltech,fw-auto-cal;
+						focaltech,ignore-id-check;
+		};
+	};
+
+	goodix_gx5116 {
+        compatible = "goodix,fingerprint";
+		interrupt-parent = <&tlmm>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&fpc_default>;
+		interrupts = <91 0x1>;
+		goodix,gpio_irq = <&tlmm 91 0x00>;
+		goodix,gpio_reset = <&tlmm 90 0x00>;
+		goodix,gpio_pwr =  <&tlmm 76 0x00>;
+	};
+	
+	fpc1020 {
+		compatible = "fpc,fpc1020";
+		interrupt-parent = <&tlmm>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&fpc_default>;
+		interrupts = <91 0x1>;
+		fpc,gpio_irq = <&tlmm 91 0x00>;
+		fpc,gpio_reset = <&tlmm 90 0x00>;
+	};
+
+	gen-vkeys {
+		compatible = "qcom,gen-vkeys";
+		label = "synaptics_dsx";
+		qcom,disp-maxx = <1599>;
+		qcom,disp-maxy = <2559>;
+		qcom,panel-maxx = <1599>;
+		qcom,panel-maxy = <2703>;
+		qcom,key-codes = <158 139 102 217>;
+	};
+};

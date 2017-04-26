@@ -1,0 +1,60 @@
+/* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include <include/dt-bindings/input/ti-drv260x.h>
+
+&soc {
+	i2c@7575000 {
+		cc_logic@01 {
+			compatible = "typec,cclogic";
+			reg = <0x01>;
+			vcc_i2c-supply = <&pm8994_s4>;
+			vcc_otg-supply = <&smbcharger_charger_otg>;/* use for otg power */
+			interrupt-parent = <&tlmm>;
+			interrupts = <1 0x2>;
+			cc_logic,irq-working = <&tlmm 1 0x02>; //for 0x8 low_level interrupt, 0x2 falling_edge
+			cc_logic,irq-plug = <&tlmm 11 0x3>;//for both edge
+			cc_logic,usb-ss-gpio = <&tlmm 0 0x00>;
+			cc_logic,power-control = <&tlmm 12 0x00>;
+			cc_logic,function-switch-gpio1 = <&tlmm 123 0x00>;
+			cc_logic,i2c-pull-up;
+			pinctrl-names = "cc_active", "cc_sleep";
+			pinctrl-0 = <&cclogic_defaultnone_active &cclogic_defaulthigh_active &cclogic_hold_active>;
+			pinctrl-1 = <&cclogic_defaultnone_suspend &cclogic_defaulthigh_suspend &cclogic_hold_suspend>;
+			cclogic,chip1 {
+				cc_logic,power-active-high;
+				chip-name = "pericom,pi5usb30216d";
+				chip-address = <0x1d>;
+			};
+			cclogic,chip2 {
+				cc_logic,power-active-high;
+				chip-name = "ti,tusb320hai";
+				chip-address = <0x47>;
+			};
+		};
+		
+		drv2605_haptics@5a{
+			status = "okay";
+			compatible = "ti,drv2605l";
+			reg = <0x5a>;
+			enable-gpio = <&tlmm 77 0x00>;
+			mode = <DRV260X_LRA_MODE>;
+			library-sel = <DRV260X_LIB_LRA>;
+			vib-rated-mv = <946>; /* not Vrms(1180mV), Vavg = Vrms * sqrt(1-(4*SampleTime + 300uS)*frequecty) */
+			vib-overdrive-mv = <3390>;/* Vpp */
+			vib-frequency = <240>;
+			pinctrl-names = "haptics_en_active", "haptics_en_sleep";
+			pinctrl-0 = <&haptics_en_active>;
+			pinctrl-1 = <&haptics_en_sleep>;
+		};
+	};
+};

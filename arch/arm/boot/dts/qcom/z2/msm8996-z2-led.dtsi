@@ -1,0 +1,70 @@
+/* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&spmi_bus {
+	qcom,pmi8994@2 {
+		qcom,leds@d000 {
+			qcom,rgb_0 {
+				/delete-property/ linux,default-trigger;
+				
+				linux,name = "led:rgb_red";
+				qcom,start-idx=<0>;
+				//qcom,ramp-step-ms=<75>;
+				qcom,duty-pcts=[00 12 24 36 48 63 63 63 48 36 24 12 00];
+				qcom,duty-pcts1=[00 16];
+				qcom,lut-flags=<17>;
+				qcom,pause-lo=<3000>;
+			};
+			
+			qcom,rgb_1 {
+				/delete-property/ linux,default-trigger;
+				
+				linux,name = "led:rgb_green";
+				qcom,start-idx=<0>;
+				//qcom,ramp-step-ms=<75>;
+				qcom,duty-pcts=[00 12 24 36 48 63 63 63 48 36 24 12 00];
+				qcom,duty-pcts1=[00 16];
+				qcom,lut-flags=<17>;
+				qcom,pause-lo=<3000>;
+			};
+			
+			qcom,rgb_2 {
+				/delete-property/ linux,default-trigger;
+				
+				linux,name = "led:rgb_blue";
+				qcom,start-idx=<0>;
+				//qcom,ramp-step-ms=<75>;
+				qcom,duty-pcts=[00 12 24 36 48 63 63 63 48 36 24 12 00];
+				qcom,duty-pcts1=[00 16];
+				qcom,lut-flags=<17>;
+				qcom,pause-lo=<3000>;
+			};
+		};
+		
+		qcom,leds@d300 {
+			pmi8994_flash0: qcom,flash_0 {
+				qcom,current = <800>;
+			};
+			
+		qcom,flash_1 {
+			qcom,current = <400>;
+		};
+		
+		qcom,torch_0 {
+			qcom,current = <200>;
+		};
+		
+		qcom,torch_1 {
+			qcom,current = <40>;
+		};
+	};
+};

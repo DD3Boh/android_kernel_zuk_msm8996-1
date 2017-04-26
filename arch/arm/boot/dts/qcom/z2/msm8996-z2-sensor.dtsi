@@ -1,0 +1,58 @@
+/* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	/*
+	i2c@7579000 { this is for maxim_sensor max86100
+		status = "ok";
+		max86x00@57 {
+			compatible = "max86x00";
+			reg = <0x57>;
+			interrupt-parent = <&tlmm>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&max86x00_default>;
+			interrupts = <123 0x1>;
+			vcc_i2c-supply = <&pm8994_lvs2>;
+			max86x00,hrm_int-gpio = <&tlmm 123 0x0>;
+			max86x00,hrm_en-gpio = <&tlmm 47 0x1>;
+			max86x00,vdd_1p8 = "maxim_i2c_vdd";
+			max86x00,i2c-pull-up;
+		};
+	};
+	*/
+	
+	hall_switch {
+		reg = <0 0>;
+		compatible = "shenqi,hall_switch";
+		interrupt-parent = <&tlmm>;
+		interrupts = <124 0>;
+		shenqi,hall-irq-gpio = <&tlmm 124 0x0>;
+	ssc_vdd-supply = <&pm8994_l19>;
+	};
+
+	tlmm: pinctrl@01010000 {
+		/*add for max86x00*/
+		max86x00_mux {
+			max86x00_default: default {
+				mux {
+					pins = "gpio123";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio123";
+					drive-strength = <2>;
+				bias-pull-up;
+				};
+			};
+		};
+	};
+};

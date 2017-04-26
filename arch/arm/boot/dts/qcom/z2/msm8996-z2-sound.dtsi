@@ -1,0 +1,34 @@
+/* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&soc {
+	i2c@75b7000 {
+		tfa9890@34 {
+			compatible = "nxp,tfa9890";
+			reg = <0x34>;
+			interrupt-parent = <&tlmm>;
+			interrupts = <50 0x2>;
+			vdd-supply = <&pm8994_s4>;
+			irq-gpio = <&tlmm 50 0x00>;
+			reset-gpio = <&tlmm 49 0x00>;
+		};
+	};
+	sound-9335 {
+		asoc-codec = <&stub_codec>;
+		asoc-codec-names = "msm-stub-codec.1";
+		qcom,mbhc-audio-jack-type = "4-pole-jack";
+		ncx_vdd-supply = <&pm8994_l19>;
+		qcom,wsa-max-devs = <1>;
+		qcom,wsa-devs =  <&wsa881x_213>;
+		qcom,wsa-aux-dev-prefix = "SpkrLeft";
+	};
+};

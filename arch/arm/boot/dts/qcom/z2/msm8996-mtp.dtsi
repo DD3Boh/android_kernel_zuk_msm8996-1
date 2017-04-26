@@ -1,0 +1,23 @@
+&spi_0{
+	status = "disabled";
+};
+
+&pmi8994_gpios {
+	gpio@c900 {
+		qcom,invert = <1>;
+	};
+};
+
+&pmi8994_mpps {
+	mpp@a000 {
+		reg = <0xa000 0x100>;
+		qcom,pin-num = <1>;
+		qcom,invert = <0>;
+	};
+};
+	
+&i2c_7 {
+	silabs4705@11 {
+		status = "disabled";
+	};
+};

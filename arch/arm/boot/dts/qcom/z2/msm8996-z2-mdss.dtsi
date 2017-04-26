@@ -1,0 +1,83 @@
+/* Copyright (c) 2015-2016, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+ 
+&mdss_dsi {
+	hw-config = "single_dsi";
+};
+
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_tianma_otm1901a_vid >;
+	qcom,platform-bklight-en-gpio = <&pm8994_gpios 22 0>;
+};
+
+&dsi_tianma_ft8716_vid {
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <255>;
+	qcom,cont-splash-enabled;
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_tianma_otm1901a_vid {
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_pwm";
+	qcom,mdss-dsi-bl-pmic-pwm-frequency = <100>;
+	qcom,mdss-dsi-bl-pmic-bank-select = <3>;
+	qcom,mdss-dsi-pwm-gpio = <&pmi8994_mpps 1 0>;
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,cont-splash-enabled;
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_dual_sharp_video {
+	qcom,cont-splash-disabled;
+};
+
+&dsi_samsung_1080_cmd {
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <255>;
+	qcom,cont-splash-enabled;
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_no_labibb>;
+};
+
+&dsi_dual_nt35597_video {
+	qcom,cont-splash-disabled;
+};
+
+&dsi_dual_nt35597_cmd {
+	qcom,cont-splash-enabled;
+};
+ 
+&dsi_tianma_otm1901a_vid {
+	qcom,mdss-dsi-panel-timings-phy-v2 = [23 1e 07 09 05 03 04 a0
+		23 1e 07 09 05 03 04 a0
+		23 1e 07 09 05 03 04 a0
+		23 1e 07 09 05 03 04 a0
+		23 19 07 08 05 03 04 a0];
+};
+
+&dsi_tianma_ft8716_vid {
+	qcom,mdss-dsi-panel-timings-phy-v2 = [23 1e 07 09 05 03 04 a0
+		23 1e 07 09 05 03 04 a0
+		23 1e 07 09 05 03 04 a0
+		23 1e 07 09 05 03 04 a0
+		23 19 07 08 05 03 04 a0];
+};
+
+&dsi_samsung_1080_cmd {
+	qcom,mdss-dsi-panel-timings-phy-v2 = [22 1e 07 08 04 03 04 a0
+		22 1e 07 08 04 03 04 a0
+		22 1e 07 08 04 03 04 a0
+		22 1e 07 08 04 03 04 a0
+		22 17 07 08 04 03 04 a0];
+};

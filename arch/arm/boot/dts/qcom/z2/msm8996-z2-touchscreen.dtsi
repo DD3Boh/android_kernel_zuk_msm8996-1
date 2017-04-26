@@ -1,0 +1,44 @@
+/* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+soc {
+	gpio_keys {
+		pinctrl-names = "tlmm_gpio_key_active", "tlmm_gpio_key_suspend";
+		pinctrl-0 = <&gpio_key_active>;
+		pinctrl-1 = <&gpio_key_suspend>;
+			home {
+				label = "home";
+				gpios = <&tlmm 38 0x1>;
+				linux,code = <102>;
+			};
+	};
+	tlmm: pinctrl@01010000 {
+		ts_mux {
+			ts_active: ts_active {
+				mux {
+					pins = "gpio9", "gpio125";
+				};
+				config {
+					pins = "gpio9", "gpio125";
+				};
+			};
+			ts_suspend: ts_suspend {
+				mux {
+					pins = "gpio9", "gpio125";
+				};
+				config {
+					pins = "gpio9", "gpio125";
+				};
+			};
+		};
+	};
+};
