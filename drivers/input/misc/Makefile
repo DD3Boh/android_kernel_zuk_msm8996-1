@@ -26,7 +26,11 @@ obj-$(CONFIG_INPUT_COBALT_BTNS)		+= cobalt_btns.o
 obj-$(CONFIG_INPUT_DA9052_ONKEY)	+= da9052_onkey.o
 obj-$(CONFIG_INPUT_DA9055_ONKEY)	+= da9055_onkey.o
 obj-$(CONFIG_INPUT_DM355EVM)		+= dm355evm_keys.o
+ifeq ($(CONFIG_MACH_ZUK_Z2),y)
+obj-$(CONFIG_INPUT_DRV260X_HAPTICS)	+= drv260x-z2.o
+else
 obj-$(CONFIG_INPUT_DRV260X_HAPTICS)	+= drv260x.o
+endif
 obj-$(CONFIG_INPUT_DRV2667_HAPTICS)	+= drv2667.o
 obj-$(CONFIG_INPUT_GP2A)		+= gp2ap002a00f.o
 obj-$(CONFIG_INPUT_GPIO_BEEPER)		+= gpio-beeper.o
