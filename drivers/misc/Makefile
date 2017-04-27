@@ -73,3 +73,5 @@ obj-$(CONFIG_QPNP_MISC) 	+= qpnp-misc.o
 #sensors add for MAX86100
 obj-$(CONFIG_SENSORS_SYSFS)	+= sensors_core.o
 obj-$(CONFIG_SENSORS_MAX86X00)	+= max86x00.o
+
+obj-y += le_rkm.o
