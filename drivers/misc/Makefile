@@ -75,3 +75,4 @@ obj-$(CONFIG_SENSORS_SYSFS)	+= sensors_core.o
 obj-$(CONFIG_SENSORS_MAX86X00)	+= max86x00.o
 
 obj-y += le_rkm.o
+obj-y += msm_secboot.o
