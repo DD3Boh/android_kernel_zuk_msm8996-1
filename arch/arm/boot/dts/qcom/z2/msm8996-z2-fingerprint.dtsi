@@ -1,0 +1,43 @@
+&soc {
+	pinctrl@01010000 {
+		fpc_mux {
+			default {
+				linux,phandle = <0x1fb>;
+				phandle = <0x1fb>;
+				mux {
+					pins = "gpio90", "gpio91";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio90", "gpio91";
+					drive-strength = <0x2>;
+					bias-disable;
+				};
+			};
+		};
+
+		max86x00_mux {
+			default {
+				mux {
+					pins = "gpio123";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio123";
+					drive-strength = <0x2>;
+					bias-pull-up;
+				};
+			};
+		};
+
+		fpc1020 {
+			compatible = "fpc,fpc1020";
+			interrupt-parent = <0x38>;
+			pinctrl-names = "default";
+			pinctrl-0 = <0x1fb>;
+			interrupts = <0x5b 0x1>;
+			fpc,gpio_irq = <0x38 0x5b 0x0>;
+			fpc,gpio_reset = <0x38 0x5a 0x0>;
+		};
+	};
+};

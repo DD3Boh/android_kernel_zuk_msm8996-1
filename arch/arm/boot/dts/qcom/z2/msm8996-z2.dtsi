@@ -1,0 +1,50 @@
+/* Copyright (c) 2014-2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+ 
+#include "dsi-panel-boe-1080p-video.dtsi" 
+#include "dsi-panel-samsung-1080p-cmd.dtsi"
+#include "dsi-panel-tianma-1080p-video.dtsi"
+#include "dsi-panel-tianma-ft8716-1080p-video.dtsi"
+
+#include "msm8996-z2-battery.dtsi"
+#include "msm8996-z2-buttons.dtsi"
+#include "msm8996-z2-fingerprint.dtsi"
+#include "msm8996-z2-gpio.dtsi"
+#include "msm8996-z2-ramoops.dtsi"
+#include "msm8996-z2-sensor.dtsi"
+#include "msm8996-z2-touchscreen-focaltech.dtsi"
+#include "msm8996-z2-touchscreen-goodix.dtsi"
+#include "msm8996-z2-usb.dtsi"
+#include "msm8996-z2-vibrator.dtsi"
+
+&soc {
+	i2c@75b7000 {
+		compatible = "qcom,i2c-msm-v2";
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+		reg-names = "qup_phys_addr";
+		reg = <0x75b7000 0x1000>;
+		interrupt-names = "qup_irq";
+		interrupts = <0x0 0x67 0x0>;
+		dmas = <0xdd 0x10 0x20 0x20000020 0x20 0xdd 0x11 0x20 0x20000020 0x20>;
+		dma-names = "tx", "rx";
+		qcom,disable-dma;
+		qcom,master-id = <0x54>;
+		qcom,clk-freq-out = <0x61a80>;
+		qcom,clk-freq-in = <0x124f800>;
+		clock-names = "iface_clk", "core_clk";
+		clocks = <0x46 0x8f283c1d 0x46 0x336d4170>;
+		pinctrl-names = "i2c_active", "i2c_sleep";
+		pinctrl-0 = <0xfc>;
+		pinctrl-1 = <0xfd>;
+	};
+};
