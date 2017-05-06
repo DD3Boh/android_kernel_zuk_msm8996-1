@@ -1,0 +1,36 @@
+&soc {
+	i2c@75b6000 {
+		focaltech@38 {
+			compatible = "focaltech,5x06";
+			reg = <0x38>;
+			interrupt-parent = <0x38>;
+			interrupts = <0x7d 0x2008>;
+			vdd-supply = <0x2e>;
+			vcc_i2c-supply = <0xe0>;
+			pinctrl-names = "ts_active", "ts_suspend";
+			pinctrl-0 = <0xe1>;
+			pinctrl-1 = <0xe2>;
+			focaltech,name = "ft5436";
+			focaltech,family-id = <0x6>;
+			focaltech,reset-gpio = <0x38 0x9 0x0>;
+			focaltech,irq-gpio = <0x38 0x7d 0x2008>;
+			focaltech,display-coords = <0x0 0x0 0x438 0x780>;
+			focaltech,panel-coords = <0x0 0x0 0x2d0 0x578>;
+			focaltech,button-map = <0x8b 0x66 0x9e>;
+			focaltech,no-force-update;
+			focaltech,i2c-pull-up;
+			focaltech,group-id = <0x1>;
+			focaltech,hard-reset-delay-ms = <0x14>;
+			focaltech,soft-reset-delay-ms = <0xc8>;
+			focaltech,num-max-touches = <0x5>;
+			focaltech,fw-delay-aa-ms = <0x1e>;
+			focaltech,fw-delay-55-ms = <0x1e>;
+			focaltech,fw-upgrade-id1 = <0x79>;
+			focaltech,fw-upgrade-id2 = <0x8>;
+			focaltech,fw-delay-readid-ms = <0xa>;
+			focaltech,fw-delay-era-flsh-ms = <0x7d0>;
+			focaltech,fw-auto-cal;
+			focaltech,ignore-id-check;
+		};
+	};
+};

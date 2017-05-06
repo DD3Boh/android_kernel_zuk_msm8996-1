@@ -1,0 +1,28 @@
+&soc {
+	tlmm: pinctrl@01010000 {
+		tlmm_gpio_key {
+			gpio_key_active: gpio_key_active{
+				mux {
+					pins = "gpio38";
+					function = "gpio";
+				};
+			config {
+				pins = "gpio38";
+				drive-strength = <2>;
+					bias-pull-up;
+				};
+			};
+			gpio_key_suspend: gpio_key_suspend{
+				mux {
+					pins = "gpio38";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio38";
+					drive-strength = <2>;
+					bias-pull-up;
+				};
+			};
+		};
+	};
+};
