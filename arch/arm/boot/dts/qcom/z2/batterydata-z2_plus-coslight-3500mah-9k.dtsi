@@ -1,0 +1,14 @@
+	qcom,Coslight_9k_2385871_lenovo_bl268drn_3500mah_averaged_masterslave_jun1st2016 {
+		qcom,max-voltage-uv = <0x432380>;
+		qcom,nom-batt-capacity-mah = <0xa8c>;
+		qcom,batt-id-kohm = <0x9>;
+		qcom,battery-beta = <0x109a>;
+		qcom,battery-type = "Coslight_9k_2385871_lenovo_bl268drn_3500mah_averaged_masterslave";
+		qcom,chg-rslow-comp-c1 = <0x333c64>;
+		qcom,chg-rslow-comp-c2 = <0x460042>;
+		qcom,chg-rs-to-rslow = <0xb2ae4>;
+		qcom,chg-rslow-comp-thr = <0xa2>;
+		qcom,checksum = <0xe4b2>;
+		qcom,gui-version = "PMI8996GUI - 1.1.0.0";
+		qcom,fg-profile-data = <0xf783af7d 0xbf813b7c 0x6183cd6d 0x1e886e8e 0x13827c9a 0x8cbd78ca 0x5b0e0488 0xe57dca81 0x357c4a83 0xba710474 0x39745782 0x539980bc 0x24c95e0d 0x950da05a 0x147050fd 0x2e3e8744 0xc63a0000 0x174cfd29 0x97380000 0x0 0x0 0x196a8968 0x745b1e88 0x50769569 0x385b0181 0x1475e363 0x3589da8 0x1de26093 0x5ea0710c 0x2800ff36 0xf0113003 0xc>;
+	};

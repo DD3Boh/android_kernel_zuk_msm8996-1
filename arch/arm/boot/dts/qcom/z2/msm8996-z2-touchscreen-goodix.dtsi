@@ -1,0 +1,22 @@
+&soc {
+	i2c@75b6000 {
+		goodix@5d {
+			compatible = "goodix,gt9xx";
+			reg = <0x5d>;
+			interrupt-parent = <0x38>;
+			interrupts = <0x7d 0x2008>;
+			vdd_ana-supply = <0x2e>;
+			vcc_i2c-supply = <0xe0>;
+			pinctrl-names = "ts_active", "ts_suspend";
+			pinctrl-0 = <0xe1>;
+			pinctrl-1 = <0xe2>;
+			goodix,rst-gpio = <0x38 0x9 0x0>;
+			goodix,irq-gpio = <0x38 0x7d 0x2008>;
+			goodix,panel-coords = <0x0 0x0 0x2d0 0x500>;
+			goodix,display-coords = <0x0 0x0 0x2d0 0x500>;
+			goodix,button-map = <0x9e 0xac 0x8b>;
+			goodix,family-id = <0x0>;
+			goodix,cfg-group0 = [45 38 04 80 07 0a 35 30 01 ca 2a 08 5a 32 03 04 00 00 00 00 12 11 00 15 18 1d 14 8b 2b 0d 4b 4d d3 07 d3 07 00 41 33 11 00 00 00 00 00 00 00 0a 08 00 41 2d 64 94 80 02 00 00 00 04 a7 30 00 91 39 00 82 43 00 75 4e 00 6a 5c 00 6a 00 00 00 00 00 00 00 00 00 00 05 01 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00 00 00 08 3c 00 00 00 00 1e 02 04 06 08 0a 0c 0e 10 12 14 16 18 1a ff 00 10 0e 00 00 28 00 00 00 00 00 18 0c 00 00 00 00 02 04 06 08 0a 0c 0f 10 12 13 26 24 22 21 20 1f 1e 1d 1c 18 16 ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 49 01];
+		};
+	};
+};
