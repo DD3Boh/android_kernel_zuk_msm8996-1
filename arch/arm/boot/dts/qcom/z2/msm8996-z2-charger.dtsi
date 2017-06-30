@@ -1,0 +1,23 @@
+&spmi_bus {
+	qcom,pmi8994@2 {
+		qcom,qpnp-smbcharger {
+			qcom,fastchg-current-ma = <0x960>;
+			qcom,float-voltage-mv = <0x1130>;
+			qcom,thermal-mitigation = <0x578 0x0>;
+			qcom,warm-cc-comp = <0x514>;
+			qcom,warm-fv-comp = <0x1004>;
+			qcom,cool-cc-comp = <0x1f4>;
+			qcom,cool-fv-comp = <0x1130>;
+			qcom,usbin-vadc = <0x155>;
+			qcom,bmd-algo-disabled;
+			qcom,float-voltage-comp = <0x10>;
+			qcom,fastchg-current-comp = <0x5dc>;
+		};
+		
+		pmi8994_fg: qcom,fg {
+			qcom,resume-soc = <0x63>;
+			qcom,fg-cc-cv-threshold-mv = <0x1126>;
+			qcom,thermal-coefficients = [b7 85 b2 49 71 35];
+		};
+	};
+};

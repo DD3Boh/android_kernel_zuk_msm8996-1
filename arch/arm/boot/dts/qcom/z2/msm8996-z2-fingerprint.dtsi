@@ -1,0 +1,36 @@
+&soc {
+	fpc1020 {
+		compatible = "fpc,fpc1020";
+		interrupt-parent = <0x38>;
+		pinctrl-names = "default";
+		pinctrl-0 = <0x1fb>;
+		interrupts = <0x5b 0x1>;
+		fpc,gpio_irq = <0x38 0x5b 0x0>;
+		fpc,gpio_reset = <0x38 0x5a 0x0>;
+	};
+
+	fpc_mux {
+		fpc_default: default {
+			mux {
+				pins = "gpio90", "gpio91";
+				function = "gpio";
+			};
+			config {
+				pins = "gpio90", "gpio91";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	goodix_gx5116 {
+		compatible = "goodix,fingerprint";
+		interrupt-parent = <&tlmm>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&fpc_default>;
+		interrupts = <91 0x1>;
+		goodix,gpio_irq = <&tlmm 91 0x00>;
+		goodix,gpio_reset = <&tlmm 90 0x00>;
+		goodix,gpio_pwr =  <&tlmm 76 0x00>;
+	};
+};

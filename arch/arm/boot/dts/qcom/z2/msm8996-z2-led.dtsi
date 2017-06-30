@@ -1,0 +1,45 @@
+&red_led {
+	linux,name = "led:rgb_red";
+	qcom,start-idx = <0x0>;
+	qcom,duty-pcts = [00 12 24 36 48 63 63 63 48 36 24 12 00];
+			qcom,duty-pcts1 = [00 16];
+	qcom,lut-flags = <0x11>;
+	qcom,pause-lo = <0xbb8>;
+	/delete-property/ linux,default-trigger;
+};
+		
+&green_led {
+	linux,name = "led:rgb_green";
+	qcom,start-idx = <0x0>;
+	qcom,duty-pcts = [00 12 24 36 48 63 63 63 48 36 24 12 00];
+	qcom,duty-pcts1 = [00 16];
+	qcom,lut-flags = <0x11>;
+	qcom,pause-lo = <0xbb8>;
+	/delete-property/ linux,default-trigger;
+};
+		
+&blue_led {
+	linux,name = "led:rgb_blue";
+	qcom,start-idx = <0x0>;
+	qcom,duty-pcts = [00 12 24 36 48 63 63 63 48 36 24 12 00];
+	qcom,duty-pcts1 = [00 16];
+	qcom,lut-flags = <0x11>;
+	qcom,pause-lo = <0xbb8>;
+	/delete-property/ linux,default-trigger;
+};
+
+&pmi8994_flash0 {
+	qcom,current = <800>;
+};
+
+&pmi8994_flash1 {
+	qcom,current = <400>;
+};
+
+&pmi8994_torch0 {
+	qcom,current = <200>;
+};
+
+&pmi8994_torch1 {
+	qcom,current = <200>;
+};

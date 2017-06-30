@@ -1,0 +1,217 @@
+#include "msm8996-z2-battery.dtsi"
+#include "msm8996-z2-blsp.dtsi"
+#include "msm8996-z2-camera-sensor.dtsi"
+#include "msm8996-z2-charger.dtsi"
+#include "msm8996-z2-fingerprint.dtsi"
+#include "msm8996-z2-led.dtsi"
+#include "msm8996-z2-mdss.dtsi"
+#include "msm8996-z2-ramoops.dtsi"
+#include "msm8996-z2-regulator.dtsi"
+#include "msm8996-z2-sound.dtsi"
+#include "msm8996-z2-touchscreen-focaltech.dtsi"
+#include "msm8996-z2-touchscreen-goodix.dtsi"
+#include "msm8996-z2-usb.dtsi"
+#include "msm-pm8994.dtsi"
+
+/ {
+	aliases {
+		i2c1 = &i2c_1;
+		i2c9 = &i2c_9;
+	};
+};
+
+&spi_0 {
+	status = "disabled";
+};
+
+&wdog {
+	qcom,pet-time = <8000>;
+};
+
+&usb3 {
+	/delete-property/ vbus_dwc3-supply;
+	/delete-property/ vbus_dwc3-supply;
+	
+	dwc3@6a00000 {
+		maximum-speed = "high-speed";
+	};
+};
+
+&ssphy {
+	qcom,phy-tuning-seq = <0x3f 0x218 0x7  0x21c 0x3f 0x220>;
+};
+
+&soc {
+	qcom,bcl {
+		/delete-property/ qcom,bcl-enable;
+		qcom,vph-high-threshold-uv = <3200000>;
+		qcom,vph-low-threshold-uv = <3000000>;
+		qcom,soc-low-threshold = <0>;
+	};
+};
+
+&pmi8994_charger {
+	qcom,battery-data = <&mtp_batterydata>;
+};
+
+&pmi8994_mpps {
+	mpp@a000 {
+		reg = <0xa000 0x100>;
+		qcom,pin-num = <1>;
+		qcom,vin-sel = <0>;
+		qcom,invert = <0>;
+	};
+};
+
+&wsa881x_213 {
+	qcom,spkr-sd-n-gpio = <&pmi8994_gpios 3 0>;
+};
+
+&pmi8994_pwm_4 {
+	qcom,supported-sizes = <6>,<7>, <9>;
+	qcom,period = <1000>;
+	qcom,lpg-dtest-line = <4>;
+	qcom,dtest-output = <2>;
+	status = "okay";
+};
+
+&ts_active {
+	mux {
+		pins = "gpio9", "gpio125";
+	};
+	config {
+		pins = "gpio9", "gpio125";
+	};
+};
+
+&ts_suspend {
+	mux {
+		pins = "gpio9", "gpio125";
+	};
+	config {
+		pins = "gpio9", "gpio125";
+	};
+};
+
+&tlmm {
+	i2c_5 {
+		i2c_5_active: i2c_5_active {
+			mux {
+				pins = "gpio83", "gpio84";
+				function = "blsp_i2c5";
+			};
+			config {
+				pins = "gpio83", "gpio84";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+		i2c_5_sleep: i2c_5_sleep {
+			mux {
+				pins = "gpio83", "gpio84";
+				function = "blsp_i2c5";
+			};
+			config {
+				pins = "gpio83", "gpio84";
+				drive-strength = <2>;
+				bias-disable;//bias-pull-up
+			};
+		};
+	};
+
+	i2c_9 {
+		i2c_9_active: i2c_9_active {
+			mux {
+				pins = "gpio51", "gpio52";
+				function = "blsp_i2c9";
+			};
+			config {
+				pins = "gpio51", "gpio52";
+				drive-strength = <4>;
+				bias-disable;
+			};
+		};
+		i2c_9_sleep: i2c_9_sleep {
+			mux {
+				pins = "gpio51", "gpio52";
+				function = "blsp_i2c9";
+			};
+			config {
+				pins = "gpio51", "gpio52";
+				drive-strength = <4>;
+				bias-pull-up;
+			};
+		};
+	};
+
+	i2c_1 {
+		i2c_1_active: i2c_1_active {
+			mux {
+				pins = "gpio2", "gpio3";
+				function = "blsp_i2c1";
+			};
+			config {
+				pins = "gpio2", "gpio3";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+		i2c_1_sleep: i2c_1_sleep {
+			mux {
+				pins = "gpio2", "gpio3";
+				function = "blsp_i2c1";
+			};
+			config {
+				pins = "gpio2", "gpio3";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+	tert_mi2s {
+		tert_mi2s_sleep: tert_mi2s_sleep {
+			mux {
+				pins = "gpio75";
+			};
+			config {
+				pins = "gpio75";
+			};
+		};
+		tert_mi2s_active: tert_mi2s_active {
+			mux {
+				pins = "gpio75";
+			};
+			config {
+				pins = "gpio75";
+			};
+		};
+	};
+
+	quat_mi2s_sd1 {
+		quat_mi2s_sd1_sleep: quat_mi2s_sd1_sleep {
+			mux {
+				pins = "gpio61";
+				function = "qua_mi2s";
+			};
+
+			config {
+				pins = "gpio61";
+				drive-strength = <2>;   /* 2 mA */
+				bias-pull-down;         /* PULL DOWN */
+			};
+		};
+		quat_mi2s_sd1_active: quat_mi2s_sd1_active {
+			mux {
+				pins = "gpio61";
+				function = "qua_mi2s";
+			};
+
+			config {
+				pins = "gpio61";
+				drive-strength = <8>;   /* 8 mA */
+				bias-disable;           /* NO PULL */
+			};
+		};
+	};
+};

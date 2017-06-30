@@ -1,0 +1,14 @@
+	qcom,ATL_2343799_lenovo_3500mah_averaged_masterslave_mar16th2016 {
+		qcom,max-voltage-uv = <0x432380>;
+		qcom,nom-batt-capacity-mah = <0xdac>;
+		qcom,batt-id-kohm = <0x32>;
+		qcom,battery-beta = <0x109a>;
+		qcom,battery-type = "ATL_2343799_lenovo_3500mah_averaged_masterslave_mar16th2016";
+		qcom,chg-rslow-comp-c1 = <0x334b4e>;
+		qcom,chg-rslow-comp-c2 = <0x484b76>;
+		qcom,chg-rs-to-rslow = <0xcddf8>;
+		qcom,chg-rslow-comp-thr = <0xa5>;
+		qcom,checksum = <0x45ab>;
+		qcom,gui-version = "PMI8996GUI - 1.1.0.0";
+		qcom,fg-profile-data = <0xe083ca7c 0x2810577 0x68832275 0xf089ea94 0xf82909a 0x7fbd2cca 0x5612f583 0x47d0581 0xd2765183 0x716bd472 0x7d855282 0x9199d4bc 0xa9c9580d 0xdd0da05a 0x147050fd 0xe63c3a44 0xc63a0000 0xf344d420 0xfd360000 0x0 0x0 0xcb6a2269 0x56687d88 0x5276b669 0xfb4a1181 0x3d753d68 0x956d1ca9 0x1a6960b3 0x5da0710c 0x2800ff36 0xf0113003 0xc>;
+	};

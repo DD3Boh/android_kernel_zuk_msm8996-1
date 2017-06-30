@@ -1,0 +1,16 @@
+#include "dsi-panel-boe-1080p-video.dtsi"
+#include "dsi-panel-samsung-1080p-cmd.dtsi"
+#include "dsi-panel-tianma-1080p-video.dtsi"
+#include "dsi-panel-tianma-ft8716-1080p-video.dtsi"
+
+&mdss_dsi {
+	hw-config = "single_dsi";
+};
+
+&mdss_dsi0 {
+	/delete-property/ qcom,platform-te-gpio;
+
+	qcom,dsi-pref-prim-pan = <&dsi_tianma_otm1901a_vid >;
+	qcom,platform-bklight-en-gpio = <&pm8994_gpios 22 0>;
+		
+};
