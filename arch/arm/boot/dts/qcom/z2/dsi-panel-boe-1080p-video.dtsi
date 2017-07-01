@@ -50,7 +50,7 @@
 				qcom,mdss-dsi-reset-sequence = <0x1 0x2 0x0 0x2 0x1 0xa>;
 				qcom,mdss-pan-physical-width-dimension = <0x3e>;
 				qcom,mdss-pan-physical-height-dimension = <0x6e>;
-				qcom,mdss-dsi-panel-timings-8996 = <0x231e0709 0x50304a0 0x231e0709 0x50304a0 0x231e0709 0x50304a0 0x231e0709 0x50304a0 0x23190708 0x50304a0>;
+				qcom,mdss-dsi-panel-timings-phy-v2 = <0x231e0709 0x50304a0 0x231e0709 0x50304a0 0x231e0709 0x50304a0 0x231e0709 0x50304a0 0x23190708 0x50304a0>;
 				qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
 				qcom,mdss-dsi-bl-min-level = <0x1>;
 				qcom,mdss-dsi-bl-max-level = <0xff>;
