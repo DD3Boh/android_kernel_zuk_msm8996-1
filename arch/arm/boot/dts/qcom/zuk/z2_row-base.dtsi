@@ -1,3 +1,8 @@
+#include batterydata-z2_row.dtsi
+
+#include "common.dtsi"
+#include "z2_row-camera-sensor.dtsi"
+
 &soc {
 	i2c_5: i2c@7579000 { /* BLSP1 QUP5 */
 		compatible = "qcom,i2c-msm-v2";
